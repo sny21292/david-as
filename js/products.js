@@ -241,6 +241,18 @@ const PRODUCTS = [
     image: "images/Ladies_Pendants/230-106/K.png",
     video: "https://ijewel.design/embedded?slug=0b14966&isRemoveLoadingBgImg=false&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false"
   },
+  {
+    style: "230-110",
+    name: "Filigree Gemstone Pendant",
+    category: "ladies",
+    subcategory: "pendants",
+    description: "This exquisite pendant showcases masterful craftsmanship in a filigree design, adorned with a dazzling array of gemstones. The intricate scrollwork, creates a mesmerizing balance of color and sparkle. The elegant heart-shaped bail completes the piece, making it a statement of timeless luxury and refined artistry.",
+    metals: "",
+    sizes: "",
+    karats: "",
+    image: "images/Ladies_Pendants/230-110/B.png",
+    video: "https://ijewel.design/embedded?slug=5696e69&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false"
+  },
 
   // Ladies — Rings (ordered per client: 210-120, 210-104, 210-102, 210-117, 210-111, 210-108, 210-118, 210-114, 210-113, 210-119, then 409-157 kept as-is)
   {
@@ -398,6 +410,66 @@ const PRODUCTS = [
     karats: "",
     image: "images/Ladies_Rings/210-115/F.png",
     video: "https://ijewel.design/embedded?slug=94afb1f&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false"
+  },
+  {
+    style: "210-107",
+    name: "Halo Gemstone Ring",
+    category: "ladies",
+    subcategory: "rings",
+    description: "Radiating elegance and sophistication, this ladies' ring showcases a vibrant gemstone embraced by a halo of sparkling accent stones. The intricate openwork band is adorned with brilliant gemstones that add depth and contemporary flair. A bold statement piece, this ring beautifully blends modern design with luxury, making it perfect for special occasions or everyday glamour.",
+    metals: "",
+    sizes: "",
+    karats: "",
+    image: "images/Ladies_Rings/210-107/C.png",
+    video: "https://ijewel.design/embedded?slug=5a8f942&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false"
+  },
+  {
+    style: "210-109",
+    name: "Vintage Filigree Oval Ring",
+    category: "ladies",
+    subcategory: "rings",
+    description: "A stunning blend of vintage-inspired artistry and modern elegance, this ring features a brilliant oval center stone framed by intricate openwork in contrasting metals. The ornate filigree design adds depth and sophistication making it a bold distinctive ring crafted to capture attention from every angle.",
+    metals: "",
+    sizes: "",
+    karats: "",
+    image: "images/Ladies_Rings/210-109/G.png",
+    video: "https://ijewel.design/embedded?slug=0869795&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false"
+  },
+  {
+    style: "210-110",
+    name: "Heart Gemstone Ring",
+    category: "ladies",
+    subcategory: "rings",
+    description: "Graceful and romantic, this ring features a heart-shaped gemstone nestled within an open-heart design. Shimmering brilliant accent stones traces one side of the heart, adding sparkle and sophistication. Delicate yet eye-catching, this ring is a beautiful symbol of love, hope, and style.",
+    metals: "",
+    sizes: "",
+    karats: "",
+    image: "images/Ladies_Rings/210-110/D.png",
+    video: "https://ijewel.design/embedded?slug=5f78bd9&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false"
+  },
+  {
+    style: "210-112",
+    name: "Crossover Gemstone Ring",
+    category: "ladies",
+    subcategory: "rings",
+    description: "Graceful curves and sparkling brilliance come together in this elegant crossover ring adorned with shimmering gemstones, creating a striking woven design. The openwork structure adds dimension and sophistication, making this ring a captivating statement piece that effortlessly blends modern style with elegance.",
+    metals: "",
+    sizes: "",
+    karats: "",
+    image: "images/Ladies_Rings/210-112/F.png",
+    video: "https://ijewel.design/embedded?slug=a6e7386&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false"
+  },
+  {
+    style: "210-116",
+    name: "Floral Vintage Ring",
+    category: "ladies",
+    subcategory: "rings",
+    description: "This ornate ring showcases a richly detailed floral-inspired design and available in either a round or princess cut stone framed by beaded milgrain detailing and accent gemstones. Bold yet refined, this ring blends vintage artistry with timeless sophistication, making it a distinctive statement piece for any jewelry collection.",
+    metals: "",
+    sizes: "",
+    karats: "",
+    image: "images/Ladies_Rings/210-116/E.png",
+    video: "https://ijewel.design/embedded?slug=a628aa1&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false"
   },
 
   // Religious Jewelry — Cross
@@ -602,6 +674,18 @@ const PRODUCTS = [
     karats: "",
     image: "images/Engagement/410-108/D.png",
     video: "https://ijewel.design/embedded?slug=726800b&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false"
+  },
+  {
+    style: "410-109",
+    name: "Sculptural Wedding Set",
+    category: "wedding",
+    subcategory: "engagement",
+    description: "A bold expression of modern elegance, this sculptural wedding set features flowing bands of polished gold and a bezel set marquise-cut center stone. The smooth, fluid design creates a seamless fusion of contemporary artistry and sophistication, making it a captivating symbol of love and commitment.",
+    metals: "",
+    sizes: "",
+    karats: "",
+    image: "images/Engagement/410-109/A.png",
+    video: "https://ijewel.design/embedded?slug=9ae8dfb&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false"
   },
 
   // Gents — Rings
