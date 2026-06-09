@@ -346,6 +346,11 @@ a:hover {
   font-weight: 300;
   line-height: 1.2;
   margin-bottom: var(--space-sm);
+
+}
+
+.why-davidas-text {
+  word-spacing: 4px; 
 }
 
 .section__desc {
@@ -574,11 +579,11 @@ a:hover {
 
 .product-detail__image {
   background: #f0f0ec;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   padding: 2rem;
+  padding-bottom: 0;
   border: 1px solid var(--color-border);
+  text-align: center;
 }
 
 .product-detail__image img {
@@ -587,6 +592,8 @@ a:hover {
   width: auto;
   height: auto;
   object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .product-detail__info {
@@ -631,22 +638,28 @@ a:hover {
 
 .product-detail__3d-btn {
   display: block;
-  margin-top: var(--space-xs);
-  padding: 0.6rem 1.2rem;
-  background: var(--color-bg);
+  margin-top: var(--space-sm);
+  padding: 0.75rem 1.2rem;
+  background: rgba(14, 26, 4, 0.88);
   color: var(--color-accent);
-  border: 1px solid var(--color-accent);
-  border-radius: 6px;
-  font-size: 0.95rem;
+  border: none;
+  border-radius: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
-  width: 100%;
+  width: calc(100% + 4rem);
+  margin-left: -2rem;
+  margin-right: -2rem;
+  margin-bottom: 0;
   text-align: center;
+  box-sizing: content-box;
 }
 
 .product-detail__3d-btn:hover {
-  background: var(--color-accent);
-  color: var(--color-bg);
+  background: rgba(14, 26, 4, 1);
+  color: #fff;
 }
 
 /* 3D Viewer Modal */
@@ -1485,8 +1498,8 @@ a:hover {
 
 /* Video Player Modal */
 .modal--video {
-  width: 90vw;
-  max-width: 900px;
+  width: 92vw;
+  max-width: 1200px;
   padding: var(--space-sm) var(--space-md) var(--space-md);
   position: relative;
   background: #000;
@@ -1520,7 +1533,7 @@ a:hover {
 
 .modal--video video {
   width: 100%;
-  max-height: 70vh;
+  max-height: 80vh;
   border-radius: 8px;
   background: #000;
 }
@@ -1534,3 +1547,4 @@ a:hover {
   color: var(--color-text-dim);
   margin-top: 0.25rem;
 }
+

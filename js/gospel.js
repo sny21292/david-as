@@ -1,7 +1,7 @@
 (function () {
   var PAYPAL_ME_URL = "http://www.paypal.me/davidasdesign";
   var VIEWER_URL =
-    "https://ijewel.design/embedded?slug=5477de4&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false";
+    "https://ijewel.design/embedded?slug=b782c05&isAutoplay=true&isResetView=false&isPlayCameraViews=false&isPlayAnimations=false";
 
   var selectedNecklace = "";
   var selectedPrice = 0;
@@ -115,4 +115,25 @@
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeViewer();
   });
+
+  // Voice over
+  var voiceoverBtn = document.getElementById("gn-voiceover-btn");
+  var voiceoverAudio = document.getElementById("gn-voiceover-audio");
+
+  if (voiceoverBtn && voiceoverAudio) {
+    voiceoverBtn.addEventListener("click", function () {
+      if (voiceoverAudio.paused) {
+        voiceoverAudio.play();
+        voiceoverBtn.innerHTML = "&#9724; Stop Listening";
+      } else {
+        voiceoverAudio.pause();
+        voiceoverAudio.currentTime = 0;
+        voiceoverBtn.innerHTML = "&#9654; Listen to the Story";
+      }
+    });
+
+    voiceoverAudio.addEventListener("ended", function () {
+      voiceoverBtn.innerHTML = "&#9654; Listen to the Story";
+    });
+  }
 })();

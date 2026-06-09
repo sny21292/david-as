@@ -114,7 +114,7 @@
     currentSubcategory = null;
     updateBreadcrumb([{ label: "Jewelry" }]);
     showView("categories");
-    history.pushState(null, "", "jewelry.html");
+    history.pushState(null, "", "/jewelry");
   }
 
   // ── View 2: Product Grid ──
@@ -323,22 +323,45 @@
     .getElementById("inquiry-form")
     .addEventListener("submit", function (e) {
       e.preventDefault();
-      const btn = this.querySelector(".btn--primary");
-      const original = btn.textContent;
-      btn.textContent = "Message Sent!";
-      btn.style.background = "var(--color-green)";
-      setTimeout(function () {
-        btn.textContent = original;
-        btn.style.background = "";
-        closeInquiry();
-      }, 2500);
+      var form = this;
+      var btn = form.querySelector(".btn--primary");
+      var original = btn.textContent;
+      btn.textContent = "Sending...";
+      btn.disabled = true;
+
+      fetch("submit-inquiry.php", {
+        method: "POST",
+        body: new FormData(form),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.success) {
+            btn.textContent = "Message Sent!";
+            btn.style.background = "var(--color-green)";
+            setTimeout(function () {
+              btn.textContent = original;
+              btn.style.background = "";
+              btn.disabled = false;
+              closeInquiry();
+            }, 2500);
+          } else {
+            alert(data.message);
+            btn.textContent = original;
+            btn.disabled = false;
+          }
+        })
+        .catch(function () {
+          alert("Something went wrong. Please call us at (336) 790-8214.");
+          btn.textContent = original;
+          btn.disabled = false;
+        });
     });
 
   // ── Routing ──
 
   function navigateTo(catId, subId) {
     if (catId === "religious" && subId === "gospel-necklace") {
-      window.location.href = "gospel-necklace.html";
+      window.location.href = "/gospel-necklace";
       return;
     }
     showGrid(catId, subId);
@@ -379,7 +402,7 @@
     const parts = hash.split("/");
     if (parts.length === 2) {
       if (parts[0] === "religious" && parts[1] === "gospel-necklace") {
-        window.location.href = "gospel-necklace.html";
+        window.location.href = "/gospel-necklace";
         return;
       }
       showGrid(parts[0], parts[1]);

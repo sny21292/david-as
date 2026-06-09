@@ -59,10 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Active nav link
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const path = window.location.pathname;
+  const currentPage = path === '/' ? '/' : path.replace(/\/$/, '');
   document.querySelectorAll('.nav__links a').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    if (href === currentPage) {
       link.classList.add('active');
     }
   });
@@ -118,22 +119,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (videoModal && videoPlayer) {
     document.querySelectorAll('.video-card[data-video-src]').forEach(card => {
-      card.addEventListener('click', () => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const src = card.getAttribute('data-video-src');
         const title = card.getAttribute('data-video-title') || '';
+
         videoTitle.textContent = title;
-        videoPlayer.src = src;
-        videoModal.style.display = '';
+        videoPlayer.setAttribute('src', src);
+        videoPlayer.load();
+        videoModal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
-        videoPlayer.play().catch(() => {});
       });
     });
 
     function closeVideoModal() {
-      videoModal.style.display = 'none';
       videoPlayer.pause();
       videoPlayer.removeAttribute('src');
-      videoPlayer.load();
+      videoModal.style.display = 'none';
       document.body.style.overflow = '';
     }
 

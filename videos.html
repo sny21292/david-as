@@ -6,28 +6,10 @@
   <meta name="description" content="Davidas Design Concepts — Video library. Watch our jewelry design, CAD, repair, engraving, wax carving, and digitizing videos.">
   <title>Video Library | Davidas Design Concepts — Greensboro, NC</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/includes.js"></script>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav__inner container">
-      <a href="index.html" class="nav__logo"><span>D</span>avidas Design Concepts</a>
-      <ul class="nav__links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="jewelry.html">Jewelry</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="gem.html">Gem of Month</a></li>
-        <li><a href="videos.html" class="active">Videos</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <button class="nav__toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
+  <div id="site-nav"></div>
 
   <!-- Page Header -->
   <header class="category-header reveal">
@@ -40,7 +22,7 @@
   <section class="section reveal">
     <div class="container">
       <div class="video-grid" data-stagger>
-        <article class="video-card" data-video-src="videos/Cad.m4v" data-video-title="CAD Design">
+        <article class="video-card" data-video-src="/video-files/Cad-new.mp4" data-video-title="CAD Design">
           <div class="video-card__thumb">
             <img src="images/Video_Thumbs/CAD.png" alt="CAD Design video thumbnail">
             <div class="video-card__play" aria-hidden="true"></div>
@@ -50,7 +32,7 @@
             <p class="video-card__desc">Designing a ring on computer</p>
           </div>
         </article>
-        <article class="video-card" data-video-src="videos/Jewelry_Repair.m4v" data-video-title="Jewelry Repair">
+        <article class="video-card" data-video-src="/video-files/Jewelry-Repair-new.mp4" data-video-title="Jewelry Repair">
           <div class="video-card__thumb">
             <img src="images/Video_Thumbs/Jewelry%20Repair.png" alt="Jewelry Repair video thumbnail">
             <div class="video-card__play" aria-hidden="true"></div>
@@ -60,27 +42,27 @@
             <p class="video-card__desc">Expert repair techniques</p>
           </div>
         </article>
-        <article class="video-card" data-video-src="videos/Pearl_Restringing.m4v" data-video-title="Pearl Restringing">
+        <article class="video-card" data-video-src="/video-files/Laser-Engraving.mp4" data-video-title="Laser Engraving">
           <div class="video-card__thumb">
-            <img src="images/Video_Thumbs/Pearl%20Restringing.png" alt="Pearl Restringing video thumbnail">
+            <img src="images/Video_Thumbs/Laser%20Engraving.jpg" alt="Laser Engraving video thumbnail">
             <div class="video-card__play" aria-hidden="true"></div>
           </div>
           <div class="video-card__body">
-            <h3 class="video-card__title">Pearl Restringing</h3>
-            <p class="video-card__desc">Re-stringing pearls and beads</p>
+            <h3 class="video-card__title">Laser Engraving</h3>
+            <p class="video-card__desc">Precision laser engraving</p>
           </div>
         </article>
-        <article class="video-card" data-video-src="videos/Engraving_Video.m4v" data-video-title="Engraving">
+        <article class="video-card" data-video-src="/video-files/5-Axis-Milling.mp4" data-video-title="5 Axis Milling">
           <div class="video-card__thumb">
-            <img src="images/Video_Thumbs/Engraving.png" alt="Engraving video thumbnail">
+            <img src="images/Video_Thumbs/5%20Axis.jpg" alt="5 Axis Milling video thumbnail">
             <div class="video-card__play" aria-hidden="true"></div>
           </div>
           <div class="video-card__body">
-            <h3 class="video-card__title">Engraving</h3>
-            <p class="video-card__desc">Computer-aided engraving</p>
+            <h3 class="video-card__title">5 Axis Milling</h3>
+            <p class="video-card__desc">5 axis milling process</p>
           </div>
         </article>
-        <article class="video-card" data-video-src="videos/Wax_Carving.m4v" data-video-title="Wax Carving">
+        <article class="video-card" data-video-src="/video-files/Wax-Carving-new.mp4" data-video-title="Wax Carving">
           <div class="video-card__thumb">
             <img src="images/Video_Thumbs/Wax%20Carving.jpg" alt="Wax Carving video thumbnail">
             <div class="video-card__play" aria-hidden="true"></div>
@@ -90,7 +72,7 @@
             <p class="video-card__desc">Hand-carved wax models</p>
           </div>
         </article>
-        <article class="video-card" data-video-src="videos/Digitizing.m4v" data-video-title="Digitizing">
+        <article class="video-card" data-video-src="/video-files/Digitizing-new.mp4" data-video-title="Digitizing">
           <div class="video-card__thumb">
             <img src="images/Video_Thumbs/Digitizing.jpg" alt="Digitizing video thumbnail">
             <div class="video-card__play" aria-hidden="true"></div>
@@ -115,46 +97,7 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-        <div>
-          <div class="footer__brand"><span>D</span>avidas Design Concepts</div>
-          <p class="footer__tagline">The fusion of art, craftsmanship and technology. Custom jewelry design in Greensboro, NC since 1995.</p>
-        </div>
-        <div>
-          <div class="footer__heading">Explore</div>
-          <ul class="footer__links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="jewelry.html">Jewelry</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="gem.html">Gem of Month</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer__heading">Connect</div>
-          <ul class="footer__links">
-            <li><a href="videos.html">Videos</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer__heading">Contact</div>
-          <ul class="footer__links">
-            <li><a href="tel:+13367908214">(336) 790-8214</a></li>
-            <li><a href="mailto:info@davidas.com">info@davidas.com</a></li>
-            <li><span style="color: var(--color-text-dim); font-size: 0.9rem;">220 S. Swing Rd, Unit #1<br>Greensboro, NC 27409</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <span>&copy; 2026 Davidas Design Concepts. All rights reserved.</span>
-        <span>Est. July 8, 1995</span>
-      </div>
-    </div>
-  </footer>
+  <div id="site-footer"></div>
 
   <script src="js/main.js"></script>
 </body>

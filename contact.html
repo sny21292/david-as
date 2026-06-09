@@ -6,28 +6,10 @@
   <meta name="description" content="Contact Davidas Design Concepts — 220 S. Swing Rd, Unit #1, Greensboro, NC 27409. Call (336) 790-8214 or send a message.">
   <title>Contact Us | Davidas Design Concepts — Greensboro, NC</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/includes.js"></script>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav__inner container">
-      <a href="index.html" class="nav__logo"><span>D</span>avidas Design Concepts</a>
-      <ul class="nav__links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="jewelry.html">Jewelry</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="gem.html">Gem of Month</a></li>
-        <li><a href="videos.html">Videos</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
-      </ul>
-      <button class="nav__toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
+  <div id="site-nav"></div>
 
   <!-- Page Header -->
   <header class="category-header reveal">
@@ -35,6 +17,7 @@
       <h1 class="section__title">Contact Us</h1>
     </div>
   </header>
+
 
   <!-- Contact Info & Form -->
   <section class="section reveal">
@@ -60,7 +43,7 @@
           </div>
           <div class="contact-info__item">
             <div class="contact-info__label">Email</div>
-            <div class="contact-info__value"><a href="mailto:info@davidas.com">info@davidas.com</a></div>
+            <div class="contact-info__value"><a href="mailto:davidas.design@yahoo.com">davidas.design@yahoo.com</a></div>
           </div>
         </div>
         <div>
@@ -68,7 +51,7 @@
             <span class="section__tag">Send a Message</span>
             <h2 class="section__title">Contact Form</h2>
           </div>
-          <form class="contact-form" action="#" method="post">
+          <form class="contact-form" id="contactForm" action="submit-contact.php" method="post">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required placeholder="Your name">
@@ -106,48 +89,51 @@
       </div>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer class="footer">
+   <!-- Studio Photos -->
+   <section class="section reveal">
     <div class="container">
-      <div class="footer__inner">
-        <div>
-          <div class="footer__brand"><span>D</span>avidas Design Concepts</div>
-          <p class="footer__tagline">The fusion of art, craftsmanship and technology. Custom jewelry design in Greensboro, NC since 1995.</p>
+      <div class="about-split">
+        <div class="about-split__image">
+          <img src="images/Contact_page/1.JPG" alt="Davidas Design Concepts building at 220 S. Swing Rd, Greensboro, NC">
         </div>
-        <div>
-          <div class="footer__heading">Explore</div>
-          <ul class="footer__links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="jewelry.html">Jewelry</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="gem.html">Gem of Month</a></li>
-          </ul>
+        <div class="about-split__image">
+          <img src="images/Contact_page/2.JPG" alt="Davidas Design Concepts storefront entrance">
         </div>
-        <div>
-          <div class="footer__heading">Connect</div>
-          <ul class="footer__links">
-            <li><a href="videos.html">Videos</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer__heading">Contact</div>
-          <ul class="footer__links">
-            <li><a href="tel:+13367908214">(336) 790-8214</a></li>
-            <li><a href="mailto:info@davidas.com">info@davidas.com</a></li>
-            <li><span style="color: var(--color-text-dim); font-size: 0.9rem;">220 S. Swing Rd, Unit #1<br>Greensboro, NC 27409</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <span>&copy; 2026 Davidas Design Concepts. All rights reserved.</span>
-        <span>Est. July 8, 1995</span>
       </div>
     </div>
-  </footer>
+  </section>
+
+  <div id="site-footer"></div>
 
   <script src="js/main.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      fetch('submit-contact.php', {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) {
+          form.innerHTML = '<div style="text-align:center;padding:var(--space-xl) 0;"><h3 style="color:var(--color-accent);">Message Sent!</h3><p>Thank you for contacting us. We\'ll get back to you soon.</p></div>';
+        } else {
+          alert(data.message);
+          btn.textContent = 'Submit';
+          btn.disabled = false;
+        }
+      })
+      .catch(() => {
+        alert('Something went wrong. Please call us at (336) 790-8214.');
+        btn.textContent = 'Submit';
+        btn.disabled = false;
+      });
+    });
+  </script>
 </body>
 </html>
