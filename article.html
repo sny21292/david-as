@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gems & Gemology article from Davidas Design Concepts.">
+  <title>Article | Davidas Design Concepts</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/includes.js"></script>
+  <style>
+    .article-page {
+      padding-top: calc(var(--nav-height) + var(--space-lg));
+      padding-bottom: var(--space-xl);
+      min-height: 100vh;
+    }
+
+    .article-page__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-md);
+      transition: color 0.2s;
+    }
+
+    .article-page__back:hover {
+      color: var(--color-text);
+    }
+
+    .article-page__back::before {
+      content: '\2190';
+    }
+
+    .article-page__tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .article-page__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-page__meta {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .article-page__meta strong {
+      color: var(--color-accent);
+    }
+
+    .article-page__image {
+      max-width: 400px;
+      margin-bottom: var(--space-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .article-page__image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .article-page__body {
+      max-width: 100%;
+      color: var(--color-text-muted);
+      font-size: 1.02rem;
+      line-height: 1.85;
+    }
+
+    .article-page__body p {
+      margin-bottom: var(--space-sm);
+    }
+
+    .article-page__body h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--color-text);
+      margin: var(--space-md) 0 var(--space-sm);
+    }
+
+    .article-page__body strong {
+      color: var(--color-text);
+    }
+
+    .article-page__body em {
+      color: var(--color-text-dim);
+    }
+
+    .article-page__body small {
+      font-size: 0.8rem;
+      color: var(--color-text-dim);
+    }
+
+    .article-page__footer {
+      margin-top: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--color-border);
+    }
+  </style>
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <main class="article-page">
+    <div class="container">
+      <a href="gems-gemology.html" class="article-page__back">Back to the Library</a>
+
+      <div class="article-page__tag" id="article-tag"></div>
+      <h1 class="article-page__title" id="article-title">Loading...</h1>
+      <div class="article-page__meta" id="article-meta"></div>
+
+      <div class="article-page__image" id="article-image" style="display:none;">
+        <img id="article-img" src="" alt="">
+      </div>
+
+      <div class="article-page__body" id="article-body"></div>
+
+      <div class="article-page__footer">
+        <a href="gems-gemology.html" class="btn btn--outline">Back to the Library</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id');
+
+      if (!id) {
+        document.getElementById('article-title').textContent = 'Article not found';
+        return;
+      }
+
+      fetch('data/articles.json')
+        .then(function (res) { return res.json(); })
+        .then(function (articles) {
+          var article = articles.find(function (a) { return a.id === id; });
+
+          if (!article) {
+            document.getElementById('article-title').textContent = 'Article not found';
+            return;
+          }
+
+          // Update page title and meta
+          document.title = article.title + ' | Gems & Gemology | Davidas Design Concepts';
+          document.querySelector('meta[name="description"]').content =
+            article.title + ' — ' + article.excerpt.substring(0, 150) + '...';
+
+          // Fill content
+          document.getElementById('article-tag').textContent = article.tag || '';
+          document.getElementById('article-title').textContent = article.title;
+          document.getElementById('article-meta').innerHTML =
+            '<strong>' + (article.author || '') + '</strong>' +
+            (article.date ? ' &mdash; ' + article.date : '');
+          document.getElementById('article-body').innerHTML = article.content;
+
+          // Show image if available
+          if (article.image) {
+            var imgContainer = document.getElementById('article-image');
+            var img = document.getElementById('article-img');
+            img.src = article.image;
+            img.alt = article.title;
+            imgContainer.style.display = 'block';
+          }
+        })
+        .catch(function (err) {
+          console.error('Failed to load article:', err);
+          document.getElementById('article-title').textContent = 'Error loading article';
+        });
+    })();
+  </script>
+</body>
+</html>

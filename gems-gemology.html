@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gems & Gemology Library — Explore expert articles on gemstones, gem profiles, and industry insights from Davidas Design Concepts.">
+  <title>Gems & Gemology | Davidas Design Concepts</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bookshelf.css">
+  <script src="js/includes.js"></script>
+</head>
+<body>
+  <div id="site-nav"></div>
+
+  <main class="bookshelf-page">
+
+    <!-- Header -->
+    <header class="library-header">
+      <span class="library-header__tag">Davidas Design Concepts &middot; The Library</span>
+      <h1 class="library-header__title">Gems <em>&amp;</em> Gemology</h1>
+      <p class="library-header__desc">A growing collection of articles on gemstones, their history, and the craft of jewelry. Pull a volume from the shelf to read.</p>
+      <div class="library-header__divider"></div>
+    </header>
+
+    <!-- Bookcase -->
+    <div class="bookcase">
+      <div class="case-frame">
+        <div class="case-top"></div>
+        <div class="shelf" id="shelf" role="list" aria-label="Article library"></div>
+        <div class="shelf-board"></div>
+        <div class="case-note">Pull a volume from the shelf to begin reading</div>
+      </div>
+    </div>
+
+    <!-- Reading Pane -->
+    <section class="reading-pane" id="readingPane" aria-live="polite">
+      <div class="pane-inner">
+        <button class="close-btn" id="closeBtn" type="button">Return to shelf</button>
+        <div class="pane-eyebrow" id="paneEyebrow"></div>
+        <h2 id="paneTitle"></h2>
+        <div class="pane-author" id="paneAuthor"></div>
+        <div id="paneBody"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/bookshelf.js"></script>
+</body>
+</html>
