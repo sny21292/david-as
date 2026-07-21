@@ -1,12 +1,17 @@
 <?php
 /**
- * Resend Email Configuration
+ * Resend Email Sender
  * Davidas Design Concepts
+ *
+ * Reads credentials from config.php (gitignored — copy config.example.php).
  */
 
-define('RESEND_API_KEY', 're_YAFt61uZ_8m863iEs69gbjV3aMkEgkNjY');
-define('RESEND_FROM_EMAIL', 'noreply@davidas.com');
-define('RESEND_FROM_NAME', 'Davidas Design Concepts');
+if (!file_exists(__DIR__ . '/config.php')) {
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'message' => 'Mail is not configured on this server.']);
+    exit;
+}
+require_once __DIR__ . '/config.php';
 
 /**
  * Send email via Resend API
@@ -87,4 +92,3 @@ function sendResendEmail($to, $subject, $html, $replyTo = null) {
     $msg  = $body['message'] ?? 'Unknown error (HTTP ' . $httpCode . ')';
     return ['success' => false, 'message' => $msg];
 }
-?>

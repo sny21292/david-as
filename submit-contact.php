@@ -4,10 +4,10 @@
  * Davidas Design Concepts
  */
 
-require_once __DIR__ . '/resend-config.php';
+require_once __DIR__ . '/mailer.php';
 
-$NOTIFY_EMAIL = 'davidas.design@yahoo.com';
-$SITE_NAME    = 'Davidas Design Concepts';
+$NOTIFY_EMAIL = NOTIFY_EMAIL;
+$SITE_NAME    = RESEND_FROM_NAME;
 
 header('Content-Type: application/json');
 
