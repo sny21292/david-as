@@ -6,7 +6,8 @@
 
 require_once __DIR__ . '/mailer.php';
 
-$NOTIFY_EMAIL = NOTIFY_EMAIL;
+// Orders go to their own inbox (falls back to the general one if unset)
+$NOTIFY_EMAIL = defined('ORDER_NOTIFY_EMAIL') ? ORDER_NOTIFY_EMAIL : NOTIFY_EMAIL;
 $SITE_NAME    = RESEND_FROM_NAME;
 
 header('Content-Type: application/json');
@@ -121,8 +122,13 @@ $message .= "
 </html>
 ";
 
-// Send notification email via Resend
+// Send notification email via Resend; without it the order is lost,
+// so the customer must not be told it succeeded
 $result = sendResendEmail($NOTIFY_EMAIL, $subject, $message, $email);
+if (!$result['success']) {
+    echo json_encode(['success' => false, 'message' => 'We could not process your order right now. Please call us at (336) 790-8214.']);
+    exit;
+}
 
 // Send confirmation to the customer
 $custSubject = "Order Confirmation - Gospel Necklace - $SITE_NAME";

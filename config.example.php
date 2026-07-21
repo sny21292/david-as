@@ -15,5 +15,8 @@ define('RESEND_API_KEY', 're_XXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 define('RESEND_FROM_EMAIL', 'noreply@davidas.com');
 define('RESEND_FROM_NAME', 'Davidas Design Concepts');
 
-// Where form notifications are delivered
+// Where contact/inquiry form notifications are delivered
 define('NOTIFY_EMAIL', 'davidas.design@yahoo.com');
+
+// Where Gospel Necklace orders are delivered
+define('ORDER_NOTIFY_EMAIL', 'gospel.necklace@yahoo.com');
