@@ -100,32 +100,29 @@ document.addEventListener('DOMContentLoaded', () => {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const btn = form.querySelector('.btn');
-      const originalText = btn.textContent;
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
       btn.disabled = true;
-      btn.textContent = 'Sending…';
 
-      fetch(form.getAttribute('action'), { method: 'POST', body: new FormData(form) })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.success) {
-            btn.textContent = 'Message Sent!';
-            btn.style.background = 'var(--color-green)';
-            form.reset();
-          } else {
-            btn.textContent = 'Failed — please call us';
-          }
-        })
-        .catch(() => {
-          btn.textContent = 'Failed — please call us';
-        })
-        .finally(() => {
-          setTimeout(() => {
-            btn.textContent = originalText;
-            btn.style.background = '';
-            btn.disabled = false;
-          }, 4000);
-        });
+      fetch(form.getAttribute('action'), {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) {
+          form.innerHTML = '<div style="text-align:center;padding:var(--space-xl) 0;"><h3 style="color:var(--color-accent);">Message Sent!</h3><p>Thank you for contacting us. We\'ll get back to you soon.</p></div>';
+        } else {
+          alert(data.message);
+          btn.textContent = 'Submit';
+          btn.disabled = false;
+        }
+      })
+      .catch(() => {
+        alert('Something went wrong. Please call us at (336) 790-8214.');
+        btn.textContent = 'Submit';
+        btn.disabled = false;
+      });
     });
   }
 
