@@ -110,34 +110,5 @@
   <div id="site-footer"></div>
 
   <script src="js/main.js"></script>
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const form = this;
-      const btn = form.querySelector('button[type="submit"]');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-
-      fetch('submit-contact.php', {
-        method: 'POST',
-        body: new FormData(form)
-      })
-      .then(r => r.json())
-      .then(data => {
-        if (data.success) {
-          form.innerHTML = '<div style="text-align:center;padding:var(--space-xl) 0;"><h3 style="color:var(--color-accent);">Message Sent!</h3><p>Thank you for contacting us. We\'ll get back to you soon.</p></div>';
-        } else {
-          alert(data.message);
-          btn.textContent = 'Submit';
-          btn.disabled = false;
-        }
-      })
-      .catch(() => {
-        alert('Something went wrong. Please call us at (336) 790-8214.');
-        btn.textContent = 'Submit';
-        btn.disabled = false;
-      });
-    });
-  </script>
 </body>
 </html>
