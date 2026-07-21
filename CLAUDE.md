@@ -57,7 +57,7 @@ ssh -p 65002 -i ~/.ssh/davidas u582212284@82.25.87.220
 - Modals use `.modal-overlay` (z-index 1000); 3D viewers open in `.modal--viewer` iframes.
 - Internal links between pages use clean URLs without `.html` (e.g. `href="/services"`).
 - All three forms carry a honeypot: a hidden `website` input (`.hp-field` in `css/style.css`); the PHP handlers return fake success and skip sending when it's filled. Any new form should include the same field, and no real field may be named `website`.
-- CSS/JS caching: `.htaccess` sets `Cache-Control: no-cache` on `.css`/`.js`, so browsers revalidate via ETag on each load and deploys reach returning visitors immediately. No `?v=` cache-bust params are needed anywhere — don't reintroduce them. If this header ever stops working on Hostinger, verify with `curl -sI https://www.davidas.com/css/style.css` before debugging "stale asset" reports.
+- CSS/JS caching: `.htaccess` sets `Cache-Control: no-cache` on `.css`/`.js`, so browsers revalidate via ETag on each load and deploys reach returning visitors immediately. Asset refs carry a **frozen** `?v=20260721e` stamp — this was a one-time cache-key rotation to evict copies that Hostinger's CDN and browsers had cached under the OLD `max-age=604800` header before `no-cache` was deployed (that header stays baked into already-cached entries for up to 7 days, so `no-cache` alone couldn't flush them). Do NOT bump this stamp on future edits — `no-cache` handles freshness going forward; the stamp is just a permanent part of the URL now. If "stale asset" reports recur, verify headers with `curl -sI https://www.davidas.com/css/style.css` (expect `cache-control: no-cache`) before touching anything.
 
 ## Workflow Orchestration
 
