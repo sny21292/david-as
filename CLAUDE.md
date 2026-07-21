@@ -45,7 +45,7 @@ ssh -p 65002 -i ~/.ssh/davidas u582212284@82.25.87.220
 
 **Gospel Necklace** (`gospel-necklace.html` + `js/gospel.js` + `css/gospel.css`) is a standalone product page outside the SPA: order form with 8 price variants, AJAX POST to `submit-order.php`, and a PayPal redirect.
 
-**Form handlers**: `submit-contact.php`, `submit-inquiry.php`, `submit-order.php` — return JSON, send via `sendResendEmail()` from `mailer.php` (Resend HTTP API); the notify address and API key come from the gitignored `config.php`. See the Deployment section for why PHP `mail()` cannot be used and how the API key must be handled.
+**Form handlers**: `submit-contact.php`, `submit-inquiry.php`, `submit-order.php` — return JSON, send via `sendResendEmail()` from `mailer.php` (Resend HTTP API); addresses and API key come from the gitignored `config.php`. Contact/inquiry notify `NOTIFY_EMAIL` (davidas.design@yahoo.com); Gospel Necklace orders deliberately go to a separate inbox, `ORDER_NOTIFY_EMAIL` (gospel.necklace@yahoo.com) — don't consolidate them. See the Deployment section for why PHP `mail()` cannot be used and how the API key must be handled.
 
 **Shared page behaviors** in `js/main.js`: mobile nav toggle (`.nav--open`), scroll-reveal (`.reveal` elements + `[data-stagger]` children via IntersectionObserver), video modal (cards with `data-video-src`/`data-video-title`), contact form AJAX.
 
