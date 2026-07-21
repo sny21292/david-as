@@ -1,16 +1,13 @@
 <?php
 /**
- * Jewelry Pricing Inquiry - Email Handler
+ * Jewelry Pricing Inquiry - Email Handler (Resend API)
  * Davidas Design Concepts
- *
- * Receives inquiry form data via AJAX from the jewelry page modal,
- * sends email to davidas.design@yahoo.com.
  */
 
-// ===== CONFIGURATION =====
+require_once __DIR__ . '/resend-config.php';
+
 $NOTIFY_EMAIL = 'davidas.design@yahoo.com';
 $SITE_NAME    = 'Davidas Design Concepts';
-// ==========================
 
 header('Content-Type: application/json');
 
@@ -93,14 +90,9 @@ $body .= "
 </html>
 ";
 
-$headers  = "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-$headers .= "From: $SITE_NAME <noreply@davidas.com>\r\n";
-$headers .= "Reply-To: $email\r\n";
+$result = sendResendEmail($NOTIFY_EMAIL, $subject, $body, $email);
 
-$sent = @mail($NOTIFY_EMAIL, $subject, $body, $headers);
-
-if ($sent) {
+if ($result['success']) {
     echo json_encode(['success' => true, 'message' => 'Inquiry sent successfully!']);
 } else {
     echo json_encode(['success' => false, 'message' => 'Failed to send. Please call us at (336) 790-8214.']);

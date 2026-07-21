@@ -1,13 +1,13 @@
 <?php
 /**
- * Contact Form - Email Handler
+ * Contact Form - Email Handler (Resend API)
  * Davidas Design Concepts
  */
 
-// ===== CONFIGURATION =====
+require_once __DIR__ . '/resend-config.php';
+
 $NOTIFY_EMAIL = 'davidas.design@yahoo.com';
 $SITE_NAME    = 'Davidas Design Concepts';
-// ==========================
 
 header('Content-Type: application/json');
 
@@ -26,7 +26,6 @@ $phone   = clean($_POST['phone'] ?? '');
 $service = clean($_POST['service'] ?? '');
 $message = clean($_POST['message'] ?? '');
 
-// Validate required fields
 if (empty($name) || empty($email) || empty($message)) {
     echo json_encode(['success' => false, 'message' => 'Please fill in all required fields.']);
     exit;
@@ -37,7 +36,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// Build email
 $subject = "New Contact Form Message - $SITE_NAME";
 
 $body = "
@@ -80,14 +78,9 @@ $body = "
 </html>
 ";
 
-$headers  = "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-$headers .= "From: $SITE_NAME <noreply@davidas.com>\r\n";
-$headers .= "Reply-To: $email\r\n";
+$result = sendResendEmail($NOTIFY_EMAIL, $subject, $body, $email);
 
-$sent = @mail($NOTIFY_EMAIL, $subject, $body, $headers);
-
-if ($sent) {
+if ($result['success']) {
     echo json_encode(['success' => true, 'message' => 'Message sent successfully!']);
 } else {
     echo json_encode(['success' => false, 'message' => 'Failed to send message. Please call us at (336) 790-8214.']);

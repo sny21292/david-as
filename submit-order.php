@@ -1,26 +1,21 @@
 <?php
 /**
- * Gospel Necklace Order Form - Email Handler
+ * Gospel Necklace Order Form - Email Handler (Resend API)
  * Davidas Design Concepts
- *
- * Receives form data via AJAX, sends email to gospel.necklace@yahoo.com,
- * and returns JSON response.
  */
 
-// ===== CONFIGURATION =====
-$NOTIFY_EMAIL = 'gospel.necklace@yahoo.com';   // Email to receive orders
+require_once __DIR__ . '/resend-config.php';
+
+$NOTIFY_EMAIL = 'davidas.design@yahoo.com';
 $SITE_NAME    = 'Davidas Design Concepts';
-// ==========================
 
 header('Content-Type: application/json');
 
-// Only accept POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
     exit;
 }
 
-// Sanitize input
 function clean($str) {
     return htmlspecialchars(trim($str), ENT_QUOTES, 'UTF-8');
 }
@@ -119,15 +114,10 @@ $message .= "
 </html>
 ";
 
-$headers  = "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-$headers .= "From: $SITE_NAME <noreply@davidas.com>\r\n";
-$headers .= "Reply-To: $email\r\n";
+// Send notification email via Resend
+$result = sendResendEmail($NOTIFY_EMAIL, $subject, $message, $email);
 
-// Send the notification email
-$sent = @mail($NOTIFY_EMAIL, $subject, $message, $headers);
-
-// Send a confirmation to the customer
+// Send confirmation to the customer
 $custSubject = "Order Confirmation - Gospel Necklace - $SITE_NAME";
 $custMessage = "
 <html>
@@ -155,13 +145,8 @@ $custMessage = "
 </html>
 ";
 
-$custHeaders  = "MIME-Version: 1.0\r\n";
-$custHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
-$custHeaders .= "From: $SITE_NAME <noreply@davidas.com>\r\n";
+sendResendEmail($email, $custSubject, $custMessage);
 
-@mail($email, $custSubject, $custMessage, $custHeaders);
-
-// Return JSON response
 echo json_encode(['success' => true, 'message' => 'Order sent successfully.']);
 exit;
 ?>
