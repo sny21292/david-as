@@ -132,6 +132,21 @@ a:hover {
   color: var(--color-text-muted);
   position: relative;
   padding: 0.25rem 0;
+  white-space: nowrap;
+}
+
+/* Keep the one-line logo + 8 nav items fitting on narrower desktops */
+@media (min-width: 901px) and (max-width: 1420px) {
+  .nav__logo { white-space: nowrap; }
+  .nav__logo span { font-size: 1.45rem; }
+  .nav__links { gap: var(--space-sm); }
+  .nav__links a { font-size: 0.78rem; letter-spacing: 0.07em; }
+}
+
+@media (min-width: 901px) and (max-width: 1080px) {
+  .nav__logo span { font-size: 1.2rem; }
+  .nav__links { gap: 0.7rem; }
+  .nav__links a { font-size: 0.72rem; letter-spacing: 0.05em; }
 }
 
 .nav__links a::after {
