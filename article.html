@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Gems & Gemology article from Davidas Design Concepts.">
   <title>Article | Davidas Design Concepts</title>
-  <link rel="stylesheet" href="css/style.css?v=20260721">
-  <script src="js/includes.js?v=20260721"></script>
+  <link rel="stylesheet" href="/css/style.css?v=20260721a">
+  <script src="/js/includes.js?v=20260721a"></script>
   <style>
     .article-page {
       padding-top: calc(var(--nav-height) + var(--space-lg));
@@ -119,7 +119,7 @@
 
   <main class="article-page">
     <div class="container">
-      <a href="gems-gemology.html" class="article-page__back">Back to the Library</a>
+      <a href="/gems-gemology" class="article-page__back">Back to the Library</a>
 
       <div class="article-page__tag" id="article-tag"></div>
       <h1 class="article-page__title" id="article-title">Loading...</h1>
@@ -132,25 +132,27 @@
       <div class="article-page__body" id="article-body"></div>
 
       <div class="article-page__footer">
-        <a href="gems-gemology.html" class="btn btn--outline">Back to the Library</a>
+        <a href="/gems-gemology" class="btn btn--outline">Back to the Library</a>
       </div>
     </div>
   </main>
 
   <div id="site-footer"></div>
 
-  <script src="js/main.js?v=20260721"></script>
+  <script src="/js/main.js?v=20260721a"></script>
   <script>
     (function () {
+      // Clean URL /articles/<slug> (rewritten by .htaccess); ?id= kept as fallback
+      var pathMatch = window.location.pathname.match(/^\/articles\/([A-Za-z0-9-]+)\/?$/);
       var params = new URLSearchParams(window.location.search);
-      var id = params.get('id');
+      var id = (pathMatch && pathMatch[1]) || params.get('id');
 
       if (!id) {
         document.getElementById('article-title').textContent = 'Article not found';
         return;
       }
 
-      fetch('data/articles.json')
+      fetch('/data/articles.json')
         .then(function (res) { return res.json(); })
         .then(function (articles) {
           var article = articles.find(function (a) { return a.id === id; });
@@ -177,7 +179,7 @@
           if (article.image) {
             var imgContainer = document.getElementById('article-image');
             var img = document.getElementById('article-img');
-            img.src = article.image;
+            img.src = article.image.charAt(0) === '/' ? article.image : '/' + article.image;
             img.alt = article.title;
             imgContainer.style.display = 'block';
           }

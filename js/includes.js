@@ -33,7 +33,7 @@
     { href: '/',         label: 'Home' },
     { href: '/jewelry',  label: 'Jewelry' },
     { href: '/services', label: 'Services' },
-    { href: '/gem',      label: 'Gem of Month' },
+    { href: '/gems-gemology', label: 'Gems &amp; Gemology' },
     { href: '/videos',   label: 'Videos' },
     { href: '/about',    label: 'About' },
     { href: '/contact',  label: 'Contact' }
@@ -81,7 +81,7 @@
       '            <li><a href="/">Home</a></li>\n' +
       '            <li><a href="/jewelry">Jewelry</a></li>\n' +
       '            <li><a href="/services">Services</a></li>\n' +
-      '            <li><a href="/gem">Gem of Month</a></li>\n' +
+      '            <li><a href="/gems-gemology">Gems &amp; Gemology</a></li>\n' +
       '          </ul>\n' +
       '        </div>\n' +
       '        <div>\n' +

@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Read full article link
     var link = document.createElement('a');
     link.className = 'pane-read-more';
-    link.href = 'article?id=' + article.id;
+    link.href = '/articles/' + article.id;
     link.textContent = 'Read the Full Article ';
     body.appendChild(link);
 
@@ -147,14 +147,14 @@ document.addEventListener('DOMContentLoaded', function () {
         row.appendChild(createBookend());
       }
 
-      // Insert before case-note
-      var caseNote = caseFrame.querySelector('.case-note');
-      caseFrame.insertBefore(row, caseNote);
+      // Insert above the decorative shelves (falls back to case-note)
+      var anchor = document.getElementById('decorShelves') || caseFrame.querySelector('.case-note');
+      caseFrame.insertBefore(row, anchor);
 
       // Add shelf board after each row
       var board = document.createElement('div');
       board.className = 'shelf-board';
-      caseFrame.insertBefore(board, caseNote);
+      caseFrame.insertBefore(board, anchor);
     }
   }
 

@@ -368,3 +368,94 @@
     animation: none;
   }
 }
+
+/* ===== Curio shelves (decor) ===== */
+.shelf--decor {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  padding: 30px 24px 0;
+  min-height: 168px;
+  background:
+    radial-gradient(120% 95% at 50% 0%, rgba(255, 206, 130, 0.10), transparent 58%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 30%, rgba(0, 0, 0, 0) 100%),
+    linear-gradient(180deg, #160d07, #241610);
+}
+
+.decor {
+  line-height: 0;
+  flex-shrink: 1;
+}
+
+/* Warm lamp glow on the book shelf too */
+.shelf {
+  background:
+    radial-gradient(120% 95% at 50% 0%, rgba(255, 206, 130, 0.08), transparent 58%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 30%, rgba(0, 0, 0, 0) 100%),
+    linear-gradient(180deg, #160d07, #241610);
+}
+
+/* Cabinet feet */
+.case-frame {
+  position: relative;
+}
+
+.case-frame::before,
+.case-frame::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  width: 30px;
+  height: 10px;
+  background: linear-gradient(180deg, var(--wood-mid), var(--wood-dark));
+  border-radius: 0 0 3px 3px;
+}
+
+.case-frame::before { left: 20px; }
+.case-frame::after  { right: 20px; }
+
+/* Gem glint + sparkles under the cloche */
+.gem-glint {
+  opacity: 0;
+  animation: gem-glint 7s ease-in-out infinite;
+}
+
+@keyframes gem-glint {
+  0%, 80%  { opacity: 0; transform: translateX(-4px); }
+  86%      { opacity: 0.85; }
+  92%, 100% { opacity: 0; transform: translateX(14px); }
+}
+
+.sparkle {
+  opacity: 0;
+  transform-origin: center;
+  animation: sparkle 7s ease-in-out infinite;
+}
+
+.sparkle--late { animation-delay: 0.45s; }
+
+@keyframes sparkle {
+  0%, 78%   { opacity: 0; transform: scale(0.4); }
+  85%       { opacity: 1; transform: scale(1); }
+  93%, 100% { opacity: 0; transform: scale(0.5); }
+}
+
+@media (max-width: 640px) {
+  .shelf--decor {
+    min-height: 120px;
+    padding: 20px 8px 0;
+  }
+
+  .shelf--decor .decor svg {
+    width: auto;
+    max-width: 24vw;
+    height: auto;
+    max-height: 110px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gem-glint, .sparkle {
+    animation: none;
+  }
+}

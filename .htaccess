@@ -1,6 +1,10 @@
 DirectorySlash Off
 RewriteEngine On
 
+# Gems & Gemology: one global rule serves every article —
+# /articles/<slug> → article.html (slug also parsed client-side)
+RewriteRule ^articles/([A-Za-z0-9-]+)/?$ article.html?id=$1 [L,QSA]
+
 # Remove .html extension - redirect to clean URL
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
 RewriteRule ^ /%1 [L,R=301]
