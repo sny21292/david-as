@@ -135,8 +135,10 @@ a:hover {
   white-space: nowrap;
 }
 
-/* Keep the one-line logo + 8 nav items fitting on narrower desktops */
-@media (min-width: 901px) and (max-width: 1700px) {
+/* Keep the one-line logo + nav items fitting: the nav is capped at
+   --max-width (1200px) on every desktop, so this applies at all
+   widths above the mobile breakpoint */
+@media (min-width: 901px) {
   .nav__logo { white-space: nowrap; }
   .nav__logo span { font-size: 1.45rem; }
   .nav__links { gap: var(--space-sm); }
