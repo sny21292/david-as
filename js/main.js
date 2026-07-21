@@ -102,13 +102,30 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const btn = form.querySelector('.btn');
       const originalText = btn.textContent;
-      btn.textContent = 'Message Sent!';
-      btn.style.background = 'var(--color-green)';
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = '';
-        form.reset();
-      }, 3000);
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      fetch(form.getAttribute('action'), { method: 'POST', body: new FormData(form) })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            btn.textContent = 'Message Sent!';
+            btn.style.background = 'var(--color-green)';
+            form.reset();
+          } else {
+            btn.textContent = 'Failed — please call us';
+          }
+        })
+        .catch(() => {
+          btn.textContent = 'Failed — please call us';
+        })
+        .finally(() => {
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 4000);
+        });
     });
   }
 

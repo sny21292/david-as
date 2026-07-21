@@ -16,6 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// Honeypot: hidden "website" field — humans leave it empty, bots fill it.
+// Pretend success so bots don't learn to skip the field.
+if (!empty($_POST['website'])) {
+    echo json_encode(['success' => true, 'message' => 'Message sent successfully!']);
+    exit;
+}
+
 function clean($str) {
     return htmlspecialchars(trim($str), ENT_QUOTES, 'UTF-8');
 }

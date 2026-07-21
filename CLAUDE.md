@@ -54,6 +54,7 @@ ssh -p 65002 -i ~/.ssh/davidas u582212284@82.25.87.220
 - Styling uses CSS variables defined in `:root` of `css/style.css` (dark green palette, `--color-*`, `--space-*`); fonts are Cormorant Garamond (display) and Outfit (body). Breakpoints: 900px (mobile nav) and 600px (single column).
 - Modals use `.modal-overlay` (z-index 1000); 3D viewers open in `.modal--viewer` iframes.
 - Internal links between pages use clean URLs without `.html` (e.g. `href="/services"`).
+- All three forms carry a honeypot: a hidden `website` input (`.hp-field` in `css/style.css`); the PHP handlers return fake success and skip sending when it's filled. Any new form should include the same field, and no real field may be named `website`.
 
 ## Workflow Orchestration
 
