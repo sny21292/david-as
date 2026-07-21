@@ -1548,3 +1548,12 @@ a:hover {
   margin-top: 0.25rem;
 }
 
+
+/* Honeypot field — hidden from humans, bait for spam bots (see submit-*.php) */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

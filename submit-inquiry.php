@@ -1,21 +1,25 @@
 <?php
 /**
- * Jewelry Pricing Inquiry - Email Handler
+ * Jewelry Pricing Inquiry - Email Handler (Resend API)
  * Davidas Design Concepts
- *
- * Receives inquiry form data via AJAX from the jewelry page modal,
- * sends email to davidas.design@yahoo.com.
  */
 
-// ===== CONFIGURATION =====
-$NOTIFY_EMAIL = 'davidas.design@yahoo.com';
-$SITE_NAME    = 'Davidas Design Concepts';
-// ==========================
+require_once __DIR__ . '/mailer.php';
+
+$NOTIFY_EMAIL = NOTIFY_EMAIL;
+$SITE_NAME    = RESEND_FROM_NAME;
 
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
+    exit;
+}
+
+// Honeypot: hidden "website" field — humans leave it empty, bots fill it.
+// Pretend success so bots don't learn to skip the field.
+if (!empty($_POST['website'])) {
+    echo json_encode(['success' => true, 'message' => 'Inquiry sent successfully!']);
     exit;
 }
 
@@ -93,14 +97,9 @@ $body .= "
 </html>
 ";
 
-$headers  = "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-$headers .= "From: $SITE_NAME <noreply@davidas.com>\r\n";
-$headers .= "Reply-To: $email\r\n";
+$result = sendResendEmail($NOTIFY_EMAIL, $subject, $body, $email);
 
-$sent = @mail($NOTIFY_EMAIL, $subject, $body, $headers);
-
-if ($sent) {
+if ($result['success']) {
     echo json_encode(['success' => true, 'message' => 'Inquiry sent successfully!']);
 } else {
     echo json_encode(['success' => false, 'message' => 'Failed to send. Please call us at (336) 790-8214.']);
