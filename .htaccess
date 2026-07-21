@@ -17,3 +17,11 @@ RewriteRule ^(.*)/$ /$1 [L,R=301]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.+)$ $1.html [L]
+
+# CSS/JS: always revalidate (ETag 304 when unchanged) so deploys reach
+# returning visitors immediately — no ?v= version bumping needed
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

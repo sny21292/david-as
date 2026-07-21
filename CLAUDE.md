@@ -57,7 +57,7 @@ ssh -p 65002 -i ~/.ssh/davidas u582212284@82.25.87.220
 - Modals use `.modal-overlay` (z-index 1000); 3D viewers open in `.modal--viewer` iframes.
 - Internal links between pages use clean URLs without `.html` (e.g. `href="/services"`).
 - All three forms carry a honeypot: a hidden `website` input (`.hp-field` in `css/style.css`); the PHP handlers return fake success and skip sending when it's filled. Any new form should include the same field, and no real field may be named `website`.
-- Hostinger serves CSS/JS with `max-age=604800` (7 days), so every stylesheet/script reference in HTML carries a cache-bust query (`css/style.css?v=YYYYMMDD`). **When you edit any CSS or JS file, bump the `?v=` value in every HTML page that references it** — otherwise returning visitors run stale code for up to a week.
+- CSS/JS caching: `.htaccess` sets `Cache-Control: no-cache` on `.css`/`.js`, so browsers revalidate via ETag on each load and deploys reach returning visitors immediately. No `?v=` cache-bust params are needed anywhere — don't reintroduce them. If this header ever stops working on Hostinger, verify with `curl -sI https://www.davidas.com/css/style.css` before debugging "stale asset" reports.
 
 ## Workflow Orchestration
 
